@@ -1,4 +1,4 @@
-# PKI-in-a-Box: Kubernetes Edition (Lean)
+# PKI-in-a-Box: Kubernetes Edition
 
 [![CI](https://github.com/Greimore1/pki-in-a-box-k8s/actions/workflows/ci.yml/badge.svg)](https://github.com/Greimore1/pki-in-a-box-k8s/actions/workflows/ci.yml)
 [![IaC Validate](https://github.com/Greimore1/pki-in-a-box-k8s/actions/workflows/iac-validate.yml/badge.svg)](https://github.com/Greimore1/pki-in-a-box-k8s/actions/workflows/iac-validate.yml)
