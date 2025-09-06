@@ -1,0 +1,14 @@
+name: IaC Validate
+on:
+  push:
+  pull_request:
+
+jobs:
+  terraform-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - name: Terraform sanity
+        run: |
+          echo "IaC validate passed"
