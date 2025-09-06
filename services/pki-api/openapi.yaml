@@ -1,0 +1,35 @@
+openapi: 3.0.3
+info: { title: PKI API, version: 1.0.0 }
+paths:
+  /healthz:
+    get: { summary: Health, responses: { '200': { description: OK } } }
+  /csr/sign:
+    post:
+      summary: Sign CSR
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                csr_pem: { type: string }
+                validity: { type: string, example: 24h }
+                common_name: { type: string }
+                sans: { type: array, items: { type: string } }
+      responses: { '200': { description: Issued }, '400': { description: Policy violation } }
+  /cert/revoke:
+    post:
+      summary: Revoke
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                serial: { type: string }
+                reason: { type: string }
+      responses: { '200': { description: Revoked } }
+  /crl:
+    get: { summary: CRL, responses: { '200': { description: CRL returned } } }
