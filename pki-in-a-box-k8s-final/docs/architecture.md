@@ -1,1 +1,0 @@
-Single-node kind cluster. step-ca StatefulSet. PKI API Deployment. Telemetry plane includes OTel Collector, Prometheus, Loki, Tempo, Grafana. Ansible host requests cert, configures Nginx mTLS, exports telemetry.
