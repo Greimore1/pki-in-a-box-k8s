@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: { name: step-ca, namespace: pki }
+spec:
+  serviceName: step-ca
+  replicas: 1
+  selector: { matchLabels: { app: step-ca } }
+  template:
+    metadata: { labels: { app: step-ca } }
+    spec:
+      containers:
+      - name: step-ca
+        image: smallstep/step-ca:0.25.2
+        ports: [ { containerPort: 9000, name: http } ]
+        env:
+        - { name: DOCKER_STEPCA_INIT_NAME, value: "Dev Root CA" }
+        - { name: DOCKER_STEPCA_INIT_DNS_NAMES, value: "step-ca,step-ca.pki.svc,localhost,127.0.0.1" }
+        - { name: DOCKER_STEPCA_INIT_ADDRESS, value: ":9000" }
+        - { name: DOCKER_STEPCA_INIT_REMOTE_MANAGEMENT, value: "true" }
+        - name: DOCKER_STEPCA_INIT_PASSWORD
+          valueFrom: { secretKeyRef: { name: stepca-secrets, key: ADMIN_PASSWORD } }
+        - { name: DOCKER_STEPCA_INIT_PROVISIONER_NAME, value: "admin" }
+        - name: DOCKER_STEPCA_INIT_PROVISIONER_PASSWORD
+          valueFrom: { secretKeyRef: { name: stepca-secrets, key: PROVISIONER_PASSWORD } }
+        volumeMounts: [ { name: step-data, mountPath: /home/step/.step } ]
+  volumeClaimTemplates:
+  - metadata: { name: step-data }
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources: { requests: { storage: 1Gi } }

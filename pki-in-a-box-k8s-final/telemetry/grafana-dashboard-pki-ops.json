@@ -1,0 +1,25 @@
+{
+  "title": "PKI Ops",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "API Success Rate",
+      "targets": []
+    },
+    {
+      "type": "graph",
+      "title": "Issuance Latency p95",
+      "targets": []
+    },
+    {
+      "type": "stat",
+      "title": "CRL Age Minutes",
+      "targets": []
+    },
+    {
+      "type": "graph",
+      "title": "Nginx 2xx vs 4xx",
+      "targets": []
+    }
+  ]
+}

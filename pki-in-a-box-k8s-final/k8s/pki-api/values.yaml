@@ -1,0 +1,19 @@
+image:
+  repository: pki-api
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+env:
+  STEP_CA_URL: "http://step-ca.pki.svc:9000"
+  STEP_PROVISIONER: "admin"
+  STEP_PROVISIONER_PASSWORD: "changeit"
+  POLICY_DOMAIN_SUFFIX: ".internal.example"
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30001
+
+resources:
+  requests: { cpu: 50m, memory: 64Mi }
+  limits: { cpu: 200m, memory: 256Mi }

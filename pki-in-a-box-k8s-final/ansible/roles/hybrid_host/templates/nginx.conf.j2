@@ -1,0 +1,12 @@
+server {
+  listen 443 ssl;
+  server_name _;
+  ssl_certificate     /opt/pki-client/cert.pem;
+  ssl_certificate_key /opt/pki-client/key.pem;
+  ssl_protocols TLSv1.2 TLSv1.3;
+  ssl_ciphers HIGH:!aNULL:!MD5;
+  location / { return 200 "hello from hybrid host
+"; }
+  location /internal/ { ssl_verify_client on; return 200 "mTLS ok
+"; }
+}
